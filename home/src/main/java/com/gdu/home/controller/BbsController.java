@@ -27,7 +27,7 @@ public class BbsController {
 		return "bbs/list";
 	}
 	
-	@GetMapping("/write.do")
+	@GetMapping("/write.html")
 	public String write() {
 		return "bbs/write";
 	}

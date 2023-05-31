@@ -1,22 +1,16 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script th:src="@{/js/lib/jquery-03.6.4.min.js}"></script>
-<link rel="stylesheet" th:href="@{/css/style.css?(ver=1.0)}" />
-</head>
+
+<!--/* /layout/header.html의 headFrag조각으로 head 태그를 바꾼다. */-->
+<head th:replace="~{/layout/header::headFrag('Welcome')}"></head>
 
 <body>
 
-	<!--/*  Link URL Expression : @{} (경로 작성할 때 사용)  */-->
-	<ul>
-		<li><a th:href="@{/bbs/list.do}">BBS</a></li>
-	</ul>
-	
-	<img th:src="@{/images/animal1.jpg}" width="300px"/>
-	
-	<div id="picture"></div>
+  <!--/* /layout/header.html의 gnbFrag조각으로 div 태그를 바꾼다. */-->
+  <div th:replace="~{/layout/header::gnbFrag}"></div>
+  
+  <img th:src="@{/images/animal1.jpg}" width="100px;">
+  <div id="picture"></div>
 
 </body>
 </html>
