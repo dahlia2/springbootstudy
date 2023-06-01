@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<!--/* /layout/header.html의 headFrag조각으로 head 태그를 바꾼다. */-->
+<head th:replace="~{/layout/header::headFrag('404')}"></head>
+
+<body>
+
+   <div th:fragment="404">
+  	  <h1>404 not found</h1>
+   	  <img th:src="@{/images/404.jpg}" width="300px;">
+   </div>
+   
+</body>
+</html>
