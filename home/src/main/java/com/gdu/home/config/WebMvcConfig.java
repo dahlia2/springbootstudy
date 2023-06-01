@@ -13,32 +13,28 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
-	
-	// field
-	private final LoginCheckInterceptor loginInterceptor;
-	private final MyFileUtil myFileUtil;
-	
-	@Override
-	public void addInterceptors(InterceptorRegistry registry) {
-	
-		/* 포함되는 항목들 선택 */
-		registry.addInterceptor(loginInterceptor)
-		  .addPathPatterns("/bbs/write.html", "/upload/write.html")
-		  .addPathPatterns("/user/logout.do");
-	
-		/* 제외할 항목들 선택 */
-		registry.addInterceptor(loginInterceptor)
-		  .addPathPatterns("/**")  				   // 모든 요청
-		  .excludePathPatterns("/user/leave.do");  // 제외할 요청
-	
-	}
-	
-	
-	@Override
-	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/imagesLoad/**")
-		.addResourceLocations("file:" + myFileUtil.getSummernoteImagePath() + "/");
-	}
-	
 
+  // field
+  private final LoginCheckInterceptor loginCheckInterceptor;
+  private final MyFileUtil myFileUtil;
+  
+  @Override
+  public void addInterceptors(InterceptorRegistry registry) {
+    
+    registry.addInterceptor(loginCheckInterceptor)
+      .addPathPatterns("/bbs/write.html", "/upload/write.html")
+      .addPathPatterns("/user/logout.do");
+    
+    //registry.addInterceptor(loginCheckInterceptor)
+    //  .addPathPatterns("/**")                  // 모든 요청
+    //  .excludePathPatterns("/user/leave.do");  // 제외할 요청
+      
+  }
+  
+  @Override
+  public void addResourceHandlers(ResourceHandlerRegistry registry) {
+    registry.addResourceHandler("/imageLoad/**")
+      .addResourceLocations("file:" + myFileUtil.getSummernoteImagePath() + "/");
+  }
+  
 }
